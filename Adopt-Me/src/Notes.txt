@@ -1,0 +1,66 @@
+// React is all about making components. And then taking those components and making more components out of those.
+
+// There are two types of components, function components and class components. This is a function component.
+// A function component must return markup (which is what React.createElement generates.)
+// These component render functions have to be fast. This function is going to be called a lot. It's a hot code path.
+// Inside of the render function, you cannot modify any sort of state. Put in functional terms, this function must be pure.
+// You don't know how or when the function will be called so it can't modify any ambient state.
+
+// Code Quality - It's important to keep quality high when writing code. 
+    Or at least that's how I sell ESLint and Prettier to my co-workers. In reality I'm super lazy and want the machine to do 
+    as much work as possible so I can focus more on architecture and problem-solving and less on syntax and style. 
+    While there are many tools that can help you keep code quality high, these two I consider core to my workflow.
+
+// Prettier is an amazing tool from the brain of James Long.Prettier is a really fancy pretty printer.
+    It takes the code you write, breaks it down in to an abstract syntax tree (AST) which is just a representation of your code. 
+    It then takes that AST, throws away all of your code style you made and prints it back out using a predefined style.
+    (npm install -D prettier@2.7.1 -D). Put the following into your package.json.["scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx}\""},]
+
+// ESLint - ESLint is a static code analysis tool that checks your JavaScript code for common problems, 
+            such as syntax errors, formatting issues, code style violations, and potential bugs.
+
+//  create a .gitignore at the root of your project to ignore the stuff we don't want to commit.
+    This will make it so these things won't get added to our repo.
+// Hooks are a new feature addition in React version 16.8 which allows you to use React features without having to write a class.
+    Previously you could use state only within class components but with hooks now it is possible to use state without writing a class.
+    Hooks don't work inside classes.
+
+//useEffect - useEffect is a built-in hook in React that allows you to perform side effects in functional components. 
+ Side effects can include data fetching, subscriptions, or manually interacting with the DOM. 
+ useEffect takes a function as its first argument and executes it after the component has rendered. 
+ It also allows you to specify dependencies, which determine when the effect should be re-run.
+
+// Custom Hooks - Creating custom hooks will be similar to writing regular JavaScript functions. 
+ You will probably get a grasp on it quickly. It will be even faster if you know how to use hooks such 
+ as useState and useEffect because you are likely to use these hooks in your custom hooks. But before we get into that, 
+ there are some rules to learn. React custom hooks are JavaScript functions. This means few things. First, when you create a 
+ custom hook you are writing a function. Second, function name should start with "use". Remember, this is a good rule of 
+ thumb for creating custom hooks. Third, you can use other React hooks inside your custom hooks.
+ These are the things to remember.
+
+// Strict Mode - One thing that StrictMode does with React 18 is run twice the initialization functions of your apps to 
+ check to see if they are indeed truly stateless. While in theory this is a good thing to assure, it's wasteful to ongoing 
+ continually do as it will double invoke your APIs while you're in development which is not something we want do now.
+
+// BrowserRouter - BrowserRouter is a router implementation that uses the HTML5 history API(pushState,
+ replaceState, and the popstate event) to keep your UI in sync with the URL. It is the parent component that is used to 
+ store all of the other components
+
+ Routes -  It’s a new component introduced in the v6 and an upgrade of the component. The main advantages of Routes over Switch is:
+    Routes are chosen based on the best match instead of being traversed in order.
+ Route - Route is the conditionally shown component that renders some UI when its path matches the current URL.
+ Link - The link component is used to create links to different routes and implement navigation around the application. It works like an HTML anchor tag.
+
+// React-Query - The idea behind React is that you want to cache most of what you fetch from a database. If you fetch the
+ details of pet ID 1, you generally do not want to fetch it again if a user revisits that page: you'd like to cache it. 
+ This is what react-query is going to do for you: it's a built in caching layer for these async data stores that works really
+ well within the constraints of React. First thing, we need to wrap our app in a query client.This will wrap our app with the
+ provider necessary to power react-query. We have to give it cache and stale times so that it will actually use its caching
+ layer. Otherwise it'll fetch each time.
+
+// Query - A query is a declarative dependency on an asynchronous source of data that is tied to a unique key.
+ A query can be used with any Promise based method (including GET and POST methods) to fetch data from a server.
+ The unique key you provide is used internally for refetching, caching, and sharing your queries throughout your application.
+ The query result returned by useQuery contains all of the information about the query that you'll need for templating and any other usage of the data.
+        => const result = useQuery({ queryKey: ['todos'], queryFn: fetchTodoList })
